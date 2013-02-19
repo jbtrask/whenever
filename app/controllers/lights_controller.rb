@@ -1,4 +1,5 @@
 class LightsController < ApplicationController
+
   # GET /lights
   # GET /lights.json
   def index
@@ -80,4 +81,5 @@ class LightsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

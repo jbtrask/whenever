@@ -1,0 +1,4 @@
+<% @bridge.info["lights"].each do |light| %>
+  <p><%= light.to_yaml.gsub("\n", "<br>").html_safe  %></p>
+  <hr>
+<% end %>

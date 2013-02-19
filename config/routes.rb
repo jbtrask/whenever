@@ -1,8 +1,11 @@
 Whenever::Application.routes.draw do
 
+  root :to => 'people#index'
+
+  match 'lights/info' => 'lights#info'
+
   resources :lights
   resources :people
-  root :to => 'people#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
