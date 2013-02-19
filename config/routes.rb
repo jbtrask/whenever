@@ -3,6 +3,7 @@ Whenever::Application.routes.draw do
   root :to => 'people#index'
 
   match 'lights/info' => 'lights#info'
+  match 'person' => 'people#person'
 
   resources :lights
   resources :people

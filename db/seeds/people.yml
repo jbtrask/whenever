@@ -37,4 +37,4 @@ james:
   name: "James Trask"
   label: "James"
   light: "door"
-  color: "{ct: 500, bri: 254}"
+  color: "{\"hue\": 65000, \"bri\": 40}"

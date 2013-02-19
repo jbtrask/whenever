@@ -82,4 +82,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  def person
+    person = Person.find_by_code(params[:code])
+    if person.present?
+      params.has_key?(:off) ? person.turn_off : person.turn_on
+    else
+      Bridge.all_off
+    end
+    render json: { status: "success" }
+  rescue Exception => ex
+    render json: { status: "error", detail: ex.message}
+  end
+
 end
