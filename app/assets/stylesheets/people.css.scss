@@ -1,3 +1,32 @@
 // Place all the styles related to the people controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.people_row {
+  .span4 {
+    position: relative;
+    min-height: 72px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.02);
+    > div {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      margin-top: -18px;
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+footer {
+  p.copyright {
+    margin-top: 10px;
+    text-align: center;
+  }
+}

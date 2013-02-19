@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_bridge
 
   def set_bridge
-    session[:bridge] = @bridge = session[:bridge] || Bridge.new
-    @bridge.refresh_info if params.has_key?(:refresh)
+    @bridge = Bridge.new
   end
 
 end
