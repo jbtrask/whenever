@@ -1,8 +1,9 @@
 class PeopleController < ApplicationController
+
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.order(:id).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,4 +81,5 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

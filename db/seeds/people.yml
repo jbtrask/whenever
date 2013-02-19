@@ -1,0 +1,40 @@
+brenda:
+  name: "Brenda Booth"
+  label: "Brenda"
+  light: "corner"
+  color: "red"
+ray:
+  name: "Ray Sensenbach"
+  label: "Ray"
+  light: "corner"
+  color: "blue"
+kelley:
+  name: "Kelley David"
+  label: "Kelley"
+  light: "door"
+  color: "yellow"
+jen:
+  name: "Jen Liu"
+  label: "Jen"
+  light: "door"
+  color: "purple"
+sabrina:
+  name: "Sabrina Kwan"
+  label: "Sabrina"
+  light: "door"
+  color: "orange"
+peter:
+  name: "Peter Dirickson"
+  label: "Peter"
+  light: "door"
+  color: "green"
+david:
+  name: "David Ludwig"
+  label: "David"
+  light: "door"
+  color: "magenta"
+james:
+  name: "James Trask"
+  label: "James"
+  light: "door"
+  color: "{ct: 500, bri: 254}"

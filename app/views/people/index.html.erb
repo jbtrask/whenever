@@ -1,30 +1,9 @@
 <div class="row-fluid people_row">
-  <div class="span4">
-    <div>Ray</div>
-  </div>
-  <div class="span4">
-    <div>Brenda</div>
-  </div>
-  <div class="span4">
-    <div>Kelley</div>
-  </div>
+  <%= render partial: "people/person_button", collection: @people.slice(0, 3) %>
 </div>
 <div class="row-fluid people_row">
-  <div class="span4">
-    <div>Jen</div>
-  </div>
-  <div class="span4">
-    <div>Sabrina</div>
-  </div>
-  <div class="span4">
-    <div>Peter</div>
-  </div>
+  <%= render partial: "people/person_button", collection: @people.slice(3, 3) %>
 </div>
 <div class="row-fluid people_row">
-  <div class="span4">
-    <div>David</div>
-  </div>
-  <div class="span4">
-    <div>James</div>
-  </div>
+  <%= render partial: "people/person_button", collection: @people.slice(6, 2) %>
 </div>
