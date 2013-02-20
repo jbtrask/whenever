@@ -84,6 +84,8 @@ class PeopleController < ApplicationController
 
   def on_now
     render json: @people = Person.order(:id).where(state: "on").all
+  rescue Exception => ex
+    render json: { status: "error", detail: ex.message}
   end
 
   def person
