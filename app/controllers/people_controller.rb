@@ -82,12 +82,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  def on_now
+    render json: @people = Person.order(:id).where(state: "on").all
+  end
+
   def person
     person = Person.find_by_code(params[:code])
     if person.present?
       params.has_key?(:off) ? person.off : person.on
     else
-      Bridge.all_off
+      Person.all.each {|p| p.off}
     end
     render json: { status: "success" }
   rescue Exception => ex

@@ -5,10 +5,12 @@ class Person < ActiveRecord::Base
 
   def on
     self.lights.first.on JSON.parse(self.color)
+    self.update_attributes state: "on"
   end
 
   def off
     self.lights.first.off
+    self.update_attributes state: "off"
   end
 
   def self.seed(overwrite = false)

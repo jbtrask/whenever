@@ -4,6 +4,7 @@ Whenever::Application.routes.draw do
 
   match 'lights/info' => 'lights#info'
   match 'person' => 'people#person'
+  match 'on_now' => 'people#on_now'
 
   resources :lights
   resources :people
