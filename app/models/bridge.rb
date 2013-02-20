@@ -16,12 +16,13 @@ class Bridge
     http = Net::HTTP.new(Bridge::IP_ADDRESS)
     response = http.request_put("/api/#{Bridge::USERNAME}/lights/#{id}/state", value)
     "200" == response.code
+  rescue Exception => ex
+    Rails.logger.debug "#{ex.message}\n#{ex.backtrace.join("\n")}"
+    false
   end
 
   def Bridge.all_off
-    Light.all.each do |light|
-      self.set_light(light.hue_id, on: false)
-    end
+    Light.all.each {|light| light.off}
   end
 
   private

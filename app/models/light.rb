@@ -13,4 +13,12 @@ class Light < ActiveRecord::Base
   attr_accessible :code, :label, :name, :hue_id
   has_and_belongs_to_many :people, :foreign_key => "light_code", :association_foreign_key => "person_code"
 
+  def on(settings)
+    Bridge.set_light(self.hue_id, settings.merge("on" => true))
+  end
+
+  def off
+    Bridge.set_light(self.hue_id, "on" => false)
+  end
+
 end

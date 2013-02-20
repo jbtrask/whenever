@@ -3,18 +3,12 @@ class Person < ActiveRecord::Base
   attr_accessible :code, :label, :name, :color
   has_and_belongs_to_many :lights, :foreign_key => "person_code", :association_foreign_key => "light_code"
 
-  def turn_on
-    Bridge.set_light(
-      self.lights.first.hue_id,
-      JSON.parse(self.color).merge("on" => true)
-    )
+  def on
+    self.lights.first.on JSON.parse(self.color)
   end
 
-  def turn_off
-    Bridge.set_light(
-      self.lights.first.hue_id,
-      {"on" => false}
-    )
+  def off
+    self.lights.first.off
   end
 
   def self.seed(overwrite = false)

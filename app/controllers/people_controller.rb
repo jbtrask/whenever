@@ -85,7 +85,7 @@ class PeopleController < ApplicationController
   def person
     person = Person.find_by_code(params[:code])
     if person.present?
-      params.has_key?(:off) ? person.turn_off : person.turn_on
+      params.has_key?(:off) ? person.off : person.on
     else
       Bridge.all_off
     end
