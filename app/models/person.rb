@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
 
-  attr_accessible :code, :label, :name, :color
+  attr_accessible :code, :label, :name, :color, :state
   has_and_belongs_to_many :lights, :foreign_key => "person_code", :association_foreign_key => "light_code"
 
   def on
