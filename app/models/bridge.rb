@@ -2,8 +2,8 @@ require "net/http"
 
 class Bridge
 
-  IP_ADDRESS = "10.0.1.210"
-  #IP_ADDRESS = "192.168.0.12"
+  #IP_ADDRESS = "10.0.1.210"
+  IP_ADDRESS = "192.168.0.12"
   USERNAME = "920164f914917985cd5e5489753a4329"
 
   def Bridge.info
@@ -20,10 +20,6 @@ class Bridge
   rescue Exception => ex
     Rails.logger.debug "#{ex.message}\n#{ex.backtrace.join("\n")}"
     false
-  end
-
-  def Bridge.all_off
-    Light.all.each {|light| light.off}
   end
 
   private
