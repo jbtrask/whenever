@@ -71,4 +71,19 @@ class Light < ActiveRecord::Base
     Light.first.on options.merge transitiontime: 2
   end
 
+  def Light.seed(overwrite = false)
+
+    path = Rails.root.join('db','seeds','lights.yml')
+    File.open(path) do |file|
+      YAML.load_documents(file) do |doc|
+        doc.keys.each do |key|
+          attributes = doc[key].merge code: key
+          record = find_or_create_by_code key, attributes
+          record.update_attributes! attributes if overwrite
+        end
+      end
+    end
+
+  end
+
 end

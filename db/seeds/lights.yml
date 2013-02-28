@@ -1,0 +1,12 @@
+left:
+  hue_id: "1"
+  name: "First Light"
+  label: "Left"
+middle:
+  hue_id: "2"
+  name: "Second Light"
+  label: "Middle"
+right:
+  hue_id: 3"
+  name: "Third Light"
+  label: "Right"
