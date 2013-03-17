@@ -100,4 +100,8 @@ class PeopleController < ApplicationController
     render json: { status: "error", detail: ex.message}
   end
 
+  def shh
+    render text: 'shh'
+  end
+
 end

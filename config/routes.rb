@@ -1,5 +1,9 @@
 Whenever::Application.routes.draw do
 
+  constraints :subdomain => 'shh' do
+    root :to => 'people#shh'
+  end
+
   root :to => 'people#index'
 
   match 'lights/info' => 'lights#info'
