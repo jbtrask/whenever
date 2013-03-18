@@ -101,7 +101,7 @@ class PeopleController < ApplicationController
   end
 
   def shh
-    render text: 'shh'
+    # do server stuff here
   end
 
 end

@@ -4,6 +4,8 @@ Whenever::Application.routes.draw do
     root :to => 'people#shh'
   end
 
+  match 'shh' => 'people#shh'
+
   root :to => 'people#index'
 
   match 'lights/info' => 'lights#info'
