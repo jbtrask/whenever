@@ -2,8 +2,8 @@ require "net/http"
 
 class Bridge
 
-  IP_ADDRESS = "10.0.2.103"
-  #IP_ADDRESS = "192.168.0.12"
+#  IP_ADDRESS = "10.0.2.103"
+  IP_ADDRESS = "192.168.0.11"
   USERNAME = "920164f914917985cd5e5489753a4329"
 
   def Bridge.info
