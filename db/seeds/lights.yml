@@ -7,6 +7,18 @@ middle:
   name: "Second Light"
   label: "Middle"
 right:
-  hue_id: 3"
+  hue_id: "3"
   name: "Third Light"
   label: "Right"
+light4:
+  hue_id: "4"
+  name: "Another Light"
+  label: "Four"
+light5:
+  hue_id: "5"
+  name: "Yet Another Light"
+  label: "Five"
+light6:
+  hue_id: "6"
+  name: "And Another Light"
+  label: "Six"
