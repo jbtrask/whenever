@@ -4,7 +4,9 @@ AWAY_TIME = 60 #seconds
 SUNSET_TIME = '7:45PM'
 
 %w{present on off}.each do |type|
-  File.open("tmp/last_#{type}.log") do |f|
+  filename = "tmp/last_#{type}.log"
+  puts filename
+  File.open(filename) do |f|
     f.write(Time.now.to_s)
   end unless File.exists?("tmp/last_#{type}.log")
 end
