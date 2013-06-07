@@ -43,6 +43,8 @@ loop do
       end
       Light.all_off
     end
+  else
+    puts "RECENTLY MISSING\n\n"
   end
 	sleep PERIOD
 end
