@@ -11,8 +11,8 @@ loop do
     File.open('tmp/last.log', 'w+') do |f|
       f.write(DateTime.now.to_s)
     end
-  elsif(DateTime.now - DataTime.parse(File.read('tmp/last.log')) > 1.minute)
-    puts 'LONG ABSENCE'
+  elsif(DateTime.now - DateTime.parse(File.read('tmp/last.log')) > 1.minute)
+    puts "LONG ABSENCE\n\n"
   end
 	sleep PERIOD
 end
