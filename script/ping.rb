@@ -1,6 +1,6 @@
 JBT_IPHONE = 'E4:25:E7:C0:52:BB'
 PERIOD = 10 #seconds
-AWAY_TIME = 60 #seconds
+AWAY_TIME = 5 #minutes
 SUNSET_TIME = '7:45PM'
 
 %w{present on off}.each do |type|
@@ -35,7 +35,7 @@ loop do
         l.on bri: 255, hue: 255
       end
     end
-  elsif Time.now - present_timestamp > AWAY_TIME
+  elsif Time.now - present_timestamp > AWAY_TIME * 60 #sec/min
     if off_timestamp <= present_timestamp
       puts "OFF\n\n"
       File.open('tmp/last_off.log', 'w+') do |f|
