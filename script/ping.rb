@@ -33,8 +33,8 @@ loop do
         l.on bri: 255, hue: 255
       end
     end
-  elsif(Time.now - present_timestamp) > AWAY_TIME)
-    if (off_timestamp <= present_timestamp)
+  elsif Time.now - present_timestamp > AWAY_TIME
+    if off_timestamp <= present_timestamp
       puts "OFF\n\n"
       File.open('tmp/last_off.log', 'w+') do |f|
         f.write(Time.now.to_s)
