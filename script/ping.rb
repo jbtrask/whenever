@@ -1,5 +1,5 @@
 JBT_IPHONE = 'E4:25:E7:C0:52:BB'
-PERIOD = 10 # seconds
+PERIOD = 15 # seconds
 AWAY_TIME = 2 # minutes
 SUNRISE_TIME = '5:40:AM' # 6/7/13
 SUNSET_TIME = '7:54PM' # 6/7/13
@@ -17,7 +17,6 @@ end
 def lights_off
   Light.all_off
 end
-
 
 def lights_on
   Light.all.each do |l|
@@ -53,6 +52,12 @@ loop do
   else
     puts "RECENTLY MISSING\n\n"
   end
+
+  puts ping_result.match(/1 sent, 1 received/)
+  unless ping_result.match(/1 sent, 1 received/)
+    puts " not seen:  #{((Time.now - @last_seen_time) / 60.0).round(2)}" if @last_seen_time.present?
+  end
+
   puts " now:  #{now}"
   puts " sunrise:  #{@sunrise_time.try{|t| t.strftime(DATE_FORMAT)}}"
   puts " sunset:  #{@sunset_time.try{|t| t.strftime(DATE_FORMAT)}}"
@@ -60,7 +65,6 @@ loop do
   puts " on:  #{@on_time.try{|t| t.strftime(DATE_FORMAT)}}"
   puts " off:  #{@off_time.try{|t| t.strftime(DATE_FORMAT)}}"
   puts " last seen:  #{@last_seen_time.try{|t| t.strftime(DATE_FORMAT)}}"
-  puts " not seen:  #{(Time.now - @last_seen_time) / 60.0}" if @last_seen_time.present?
   puts "\n\n"
 	sleep PERIOD
 end
