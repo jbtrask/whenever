@@ -8,6 +8,9 @@ DATE_FORMAT = '%Y-%m-%d %l:%M:%S%p (%a)'
 @on_time = @off_time = @last_seen_time = nil
 
 def is_dark?
+  today = DateTime.now.in_time_zone.to_date
+  sunrise_time = Time.zone.parse("#{today} #{SUNRISE_TIME}")
+  sunset_time = Time.zone.parse("#{today} #{SUNSET_TIME}")
   Time.now < sunrise_time || Time.now > sunset_time
 end
 
@@ -29,9 +32,6 @@ i = 0
 loop do
 	i += 1
   ping_result = `sudo l2ping -c 1 #{JBT_IPHONE}`
-  today = DateTime.now.in_time_zone.to_date
-  sunrise_time = Time.zone.parse("#{today} #{SUNRISE_TIME}")
-  sunset_time = Time.zone.parse("#{today} #{SUNSET_TIME}")
   action = nil
   if ping_result.match(/1 sent, 1 received/)
     status = "PRESENT"
@@ -61,8 +61,6 @@ loop do
   puts "#{i}:  #{now}"
   puts "   status:  #{status}"
   puts "   last seen:  #{@last_seen_time.try{|t| t.strftime(DATE_FORMAT)}}"
-  puts "   sunrise:  #{sunrise_time.try{|t| t.strftime(DATE_FORMAT)}}"
-  puts "   sunset:  #{sunset_time.try{|t| t.strftime(DATE_FORMAT)}}"
   puts "   is dark:  #{is_dark?}"
   puts "   on:  #{@on_time.try{|t| t.strftime(DATE_FORMAT)}}"
   puts "   off:  #{@off_time.try{|t| t.strftime(DATE_FORMAT)}}"
