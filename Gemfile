@@ -4,6 +4,7 @@ gem 'rails'
 gem 'jquery-rails'
 gem 'psych'
 gem 'dotenv'
+gem 'RubySunrise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

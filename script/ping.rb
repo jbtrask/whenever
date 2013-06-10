@@ -1,19 +1,18 @@
-include ActionView::Helpers::DateHelper
+require 'action_view/helpers/date_helper'
+require 'solareventcalculator'
 
-JBT_IPHONE = 'E4:25:E7:C0:52:BB'
 PERIOD = 15 # seconds
 AWAY_TIME = 2 # minutes
-SUNRISE_TIME = '5:40:AM' # 6/7/13
-SUNSET_TIME = '7:54PM' # 6/7/13
 DATE_FORMAT = '%Y-%m-%d %l:%M:%S%p (%a)'
 
 @on_time = @off_time = @last_seen_time = nil
 
 def is_dark?
-  today = DateTime.now.in_time_zone.to_date
-  sunrise_time = Time.zone.parse("#{today} #{SUNRISE_TIME}")
-  sunset_time = Time.zone.parse("#{today} #{SUNSET_TIME}")
-  Time.now < sunrise_time || Time.now > sunset_time
+  now = DateTime.now
+  solar_calculator = SolarEventCalculator.new(now.in_time_zone.to_date, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f)
+  sunrise = solar_calculator.compute_utc_official_sunrise
+  sunset = solar_calculator.compute_utc_official_sunset
+  now < sunrise || now > sunset
 end
 
 def lights_off
@@ -24,10 +23,6 @@ def lights_on
   Light.all.each do |l|
     l.on bri: 254, hue: 13122, sat: 211 # ct: 467
   end
-end
-
-def now
-  DateTime.now.in_time_zone.strftime(DATE_FORMAT)
 end
 
 def time_ago(reference_time)
@@ -53,7 +48,7 @@ puts header.join(', ')
 i = 0
 loop do
 	i += 1
-  ping_result = `sudo l2ping -c 1 #{JBT_IPHONE}`
+  ping_result = `sudo l2ping -c 1 #{ENV['BLUETOOTH_MAC']}`
   action = 'NONE'
   if ping_result.match(/1 sent, 1 received/)
     status = 'PRESENT'
@@ -79,7 +74,7 @@ loop do
   report = 
   [
     i,
-    now,
+    DateTime.now.in_time_zone.strftime(DATE_FORMAT),
     status,
     action,
     is_dark?,
