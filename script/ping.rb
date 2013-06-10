@@ -22,7 +22,7 @@ end
 
 def lights_on
   Light.all.each do |l|
-    l.on bri: 255, hue: 255
+    l.on bri: 254, hue: 13122, sat: 211 # ct: 467
   end
 end
 
