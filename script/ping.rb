@@ -1,5 +1,6 @@
-require 'action_view/helpers/date_helper'
 require 'solareventcalculator'
+
+include ActionView::Helpers::DateHelper
 
 PERIOD = 15 # seconds
 AWAY_TIME = 2 # minutes
