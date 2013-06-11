@@ -4,15 +4,16 @@ include ActionView::Helpers::DateHelper
 
 PERIOD = 15 # seconds
 AWAY_TIME = 2 # minutes
-DATE_FORMAT = '%Y-%m-%d %l:%M:%S%p (%a)'
+DATE_LONG_FORMAT = '%Y-%m-%d %l:%M:%S%p (%a)'
+DATE_SHORT_FORMAT = '%Y-%m-%d %l:%M:%S%p'
 
 @on_time = @off_time = @last_seen_time = nil
 
 def is_dark?
   now = DateTime.now
-  solar_calculator = SolarEventCalculator.new(now.in_time_zone.to_date, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f)
-  sunrise = solar_calculator.compute_utc_official_sunrise
-  sunset = solar_calculator.compute_utc_official_sunset
+  date = now.in_time_zone.to_date
+  sunrise = SolarEventCalculator.new(date, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f).compute_utc_official_sunrise
+  sunset = SolarEventCalculator.new(date + 1.day, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f).compute_utc_official_sunset
   now < sunrise || now > sunset
 end
 
@@ -26,14 +27,6 @@ def lights_on
   end
 end
 
-def time_ago(reference_time)
-  if reference_time.present?
-    "#{reference_time.strftime(DATE_FORMAT)} (#{time_ago_in_words(reference_time, include_seconds: true)})"
-  else
-    'NEVER'
-  end
-end
-
 header = %w{
   idx
   time
@@ -41,6 +34,7 @@ header = %w{
   action
   dark
   last
+  ago
   on
   off
 }
@@ -75,13 +69,14 @@ loop do
   report = 
   [
     i,
-    DateTime.now.in_time_zone.strftime(DATE_FORMAT),
+    DateTime.now.in_time_zone.strftime(DATE_LONG_FORMAT),
     status,
     action,
     is_dark?,
-    time_ago(@last_seen_time),
-    time_ago(@on_time),
-    time_ago(@off_time)
+    @last_seen_time.try{|t| t.strftime(DATE_SHORT_FORMAT)},
+    @last_seen_time.try{|t| time_ago_in_words(t, include_seconds: true)},
+    @on_time.try{|t| t.strftime(DATE_SHORT_FORMAT)},
+    @off_time.try{|t| t.strftime(DATE_SHORT_FORMAT)}
   ]
   puts report.join(', ')
 
