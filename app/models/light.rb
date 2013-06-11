@@ -10,6 +10,10 @@ class Light < ActiveRecord::Base
     orange: {hue: 7745, bri: 254}
   }
 
+  LIGHT_SETTINGS = {
+    relax: { bri: 254, hue: 13122, sat: 211 }
+  }
+
   attr_accessible :code, :label, :name, :hue_id
   has_and_belongs_to_many :people, :foreign_key => "light_code", :association_foreign_key => "person_code"
 
@@ -50,6 +54,10 @@ class Light < ActiveRecord::Base
     end
     sleep options[:fade].to_f
     Light.order(:hue_id).all.each { |light| light.off }
+  end
+
+  def Light.all_on
+    Light.order(:hue_id).all.each {|light| light.on LIGHT_SETTINGS[:relax] }
   end
 
   def Light.all_off(burst = true)
