@@ -41,7 +41,12 @@ class BluetoothMonitor
 		      if self.last_off.blank? || (self.last_on.present? && self.last_off < self.last_on)
 		        self.last_off = self.now
 		        action = 'off'
-		        Light.all_off
+		        if is_dark?
+              hue = (65535.0 * self.now.minute.to_f / 60.0).to_i
+              Light.order(:hue_id).all.each {|l| l.on hue: hue, bri: 1 }
+            else
+              Light.all_off
+            end
 		      end
 		    end
 		end
@@ -56,6 +61,17 @@ class BluetoothMonitor
       status, action = self.ping
       puts self.row(current_values(i, status, action))
       sleep self.options[:period]
+    end
+  end
+
+  def start_cycle
+    idx = 0
+    loop do
+      hue = (65535.0 * idx.to_f / 60.0).to_i
+      Light.order(:hue_id).all.each {|l| l.on hue: hue, bri: 1}
+      idx += 1
+      idx = 0 if idx > 59
+      sleep 1
     end
   end
 
@@ -102,6 +118,6 @@ class BluetoothMonitor
 			self.last_on.try{|t| t.strftime(self.options[:date_format][:db])} || 'never on',
 			self.last_off.try{|t| t.strftime(self.options[:date_format][:db])} || 'never off'
 		]
-  	end
+  end
 
 end
