@@ -4,6 +4,7 @@ include ActionView::Helpers::DateHelper
 
 PERIOD = 15 # seconds
 AWAY = 2 # minutes
+TWILIGHT = 15 #minutes
 DATE_FORMAT = {
   db: '%Y-%m-%dT%l:%M:%S%z',
   display: '%a,  %B %e, %l:%M %p'
@@ -14,7 +15,7 @@ DATE_FORMAT = {
 def is_dark?
   sunrise = SolarEventCalculator.new(@now.to_date, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f).compute_utc_official_sunrise
   sunset = SolarEventCalculator.new(@now.to_date + 1.day, ENV['LATITUDE'].to_f, ENV['LONGITUDE'].to_f).compute_utc_official_sunset
-  @now < sunrise || @now > sunset
+  @now < sunrise + TWILIGHT.minutes || @now > sunset - TWILIGHT.minutes
 end
 
 header = %w{
