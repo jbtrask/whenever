@@ -13,7 +13,7 @@ class BluetoothMonitor
 		twilight: 15, #minutes
 		date_format: {
 			db: '%Y-%m-%dT%l:%M:%S%z',
-			display: '%a,  %B %e, %l:%M %p'
+			display: '%a,  %B %e, %l:%M%S %p'
 		}
 	}
 
