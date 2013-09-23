@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~>3.2.0'
+
 gem 'jquery-rails'
 gem 'psych'
 gem 'dotenv'
@@ -9,13 +10,7 @@ gem 'RubySunrise'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :production do
-  gem 'pg'
-end
-
-group :development do
-  gem 'sqlite3'
-end
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,8 +30,8 @@ end
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+#Use unicorn as the app server
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
