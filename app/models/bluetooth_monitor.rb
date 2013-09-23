@@ -42,11 +42,11 @@ class BluetoothMonitor
 		        self.last_off = self.now
 		        action = 'off'
 		        if is_dark?
-              hue = (65535.0 * self.now.minute.to_f / 60.0).to_i
-              Light.order(:hue_id).all.each {|l| l.on hue: hue, bri: 1 }
-            else
-              Light.all_off
-            end
+	              hue = (65535.0 * self.now.minute.to_f / 60.0).to_i
+	              Light.order(:hue_id).all.each {|l| l.on hue: hue, bri: 1 }
+	            else
+	              Light.all_off
+	            end
 		      end
 		    end
 		end
