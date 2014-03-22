@@ -1,24 +1,36 @@
-left:
+first:
   hue_id: "1"
   name: "First Light"
   label: "Left"
-middle:
+second:
   hue_id: "2"
   name: "Second Light"
   label: "Middle"
-right:
+third:
   hue_id: "3"
   name: "Third Light"
   label: "Right"
-light4:
+fourth:
   hue_id: "4"
-  name: "Another Light"
+  name: "Fourth Light"
   label: "Four"
-light5:
+fifth:
   hue_id: "5"
-  name: "Yet Another Light"
+  name: "Fifth Light"
   label: "Five"
-light6:
+sixth:
   hue_id: "6"
-  name: "And Another Light"
+  name: "Sixth Light"
+  label: "Six"
+seventh:
+  hue_id: "7"
+  name: "Seventh Light"
+  label: "Six"
+eighth:
+  hue_id: "8"
+  name: "Eighth Light"
+  label: "Six"
+nineth:
+  hue_id: "9"
+  name: "Nineth Light"
   label: "Six"

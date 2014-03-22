@@ -85,7 +85,7 @@ class Light < ActiveRecord::Base
     File.open(path) do |file|
       YAML.load_documents(file) do |doc|
         doc.keys.each do |key|
-          attributes = doc[key].merge code: key
+          attributes = doc[key].merge(code: key)
           record = find_or_create_by_code key, attributes
           record.update_attributes! attributes if overwrite
         end

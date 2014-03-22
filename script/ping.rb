@@ -2,9 +2,9 @@ require 'solareventcalculator'
 
 include ActionView::Helpers::DateHelper
 
-PERIOD = 15 # seconds
-AWAY = 2 # minutes
-TWILIGHT = 15 #minutes
+PERIOD = 15.0 # seconds
+AWAY = 2.0 # minutes
+TWILIGHT = 15.0 #minutes
 DATE_FORMAT = {
   db: '%Y-%m-%dT%l:%M:%S%z',
   display: '%a,  %B %e, %l:%M %p'
@@ -62,7 +62,7 @@ loop do
     end
   end
 
-  report = 
+  report =
   [
     i,
     @now.strftime(DATE_FORMAT[:display]),
