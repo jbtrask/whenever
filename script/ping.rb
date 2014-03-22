@@ -76,7 +76,7 @@ loop do
   ]
   puts report.join(', ')
 
-  sleep ENV['BLUETOOTH_PERIOD']
+  sleep ENV['BLUETOOTH_PERIOD'].to_f
 
 end
 
