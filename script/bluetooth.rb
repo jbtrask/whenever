@@ -1,7 +1,7 @@
 require 'bluetooth'
 
-#address = ARGV.shift || abort("#{$0} address # look up a device with scan.rb")
 address = 'a4-c3-61-33-c9-01'
+period = 10.0 #seconds
 
 device = Bluetooth::Device.new address
 
@@ -17,6 +17,6 @@ loop do
     puts "#{$!} (#{$!.class})"
   ensure
     puts 'sleeping'
-    sleep 5
+    sleep period
   end
 end
