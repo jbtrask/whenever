@@ -2,7 +2,6 @@ require 'solareventcalculator'
 
 include ActionView::Helpers::DateHelper
 
-PERIOD = 15.0 # seconds
 AWAY = 2.0 # minutes
 TWILIGHT = 15.0 #minutes
 DATE_FORMAT = {
@@ -77,7 +76,7 @@ loop do
   ]
   puts report.join(', ')
 
-  sleep PERIOD
+  sleep ENV['BLUETOOTH_PERIOD']
 
 end
 

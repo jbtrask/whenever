@@ -1,7 +1,6 @@
 require 'bluetooth'
 
-address = 'a4-c3-61-33-c9-01'
-period = 10.0 #seconds
+address = ENV['BLUETOOTH_MAC'].downcase.gsub(':', '-')
 
 device = Bluetooth::Device.new address
 
@@ -17,6 +16,6 @@ loop do
     puts "#{$!} (#{$!.class})"
   ensure
     puts 'sleeping'
-    sleep period
+    sleep ENV['BLUETOOTH_PERIOD']
   end
 end
