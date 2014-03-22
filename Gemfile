@@ -8,6 +8,8 @@ gem 'dotenv'
 gem 'RubySunrise'
 gem 'sqlite3'
 gem 'wolfram'
+gem 'bluetooth'
+gem 'interactive_editor'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
